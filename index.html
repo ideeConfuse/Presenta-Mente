@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Presenta-Mente — Idee Confuse</title>
+  <link rel="icon" type="image/png" href="propic.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #1a0a12;
+      --bg2: #2a1119;
+      --bg3: #0f0508;
+      --accent: #D59DA7;
+      --accent-2: #C65A7B;
+      --accent-dark: #a8748a;
+      --muted: rgba(255, 255, 255, 0.85);
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+      color: white;
+      background: linear-gradient(135deg, var(--bg3), var(--bg1) 50%, var(--bg2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      overflow: visible;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(213, 157, 167, 0.06), rgba(198, 90, 123, 0.04));
+      border: 1px solid rgba(213, 157, 167, 0.12);
+      backdrop-filter: blur(6px);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(69, 26, 44, 0.8), 0 0 0 1px rgba(213, 157, 167, 0.1) inset;
+      height: 100%;
+      max-height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .logo-mark {
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      min-height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: white;
+      font-size: 20px;
+      box-shadow: 0 6px 18px rgba(198, 90, 123, 0.4);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(18px, 2vw, 24px)
+    }
+
+    p.lead {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+      flex: 1;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .hero {
+      padding: 12px;
+      overflow-y: auto;
+      min-height: 0;
+    }
+
+    .feature-list {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .feature {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start
+    }
+
+    .feature .dot {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(213, 157, 167, 0.1), rgba(198, 90, 123, 0.08));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--accent);
+      border: 1px solid rgba(213, 157, 167, 0.15);
+      flex-shrink: 0
+    }
+
+    .feature h3 {
+      margin: 0;
+      font-size: 16px
+    }
+
+    .feature p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .btn {
+      background: linear-gradient(90deg, var(--accent-2), var(--accent-dark));
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: none;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(198, 90, 123, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(198, 90, 123, 0.6);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      border: 1px solid rgba(213, 157, 167, 0.3);
+      padding: 9px 12px
+    }
+
+    .btn.ghost:hover {
+      background: rgba(213, 157, 167, 0.1);
+      border-color: var(--accent);
+    }
+
+    .aside {
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(213, 157, 167, 0.06), rgba(198, 90, 123, 0.04));
+      border-radius: 12px;
+      border: 1px solid rgba(213, 157, 167, 0.1);
+      overflow-y: auto;
+      min-height: 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    input[type=text],
+    textarea {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(213, 157, 167, 0.15);
+      padding: 10px;
+      border-radius: 10px;
+      color: white;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    input[type=text]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 0 3px rgba(213, 157, 167, 0.1);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical
+    }
+
+    .small {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6)
+    }
+
+    .note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    footer {
+      margin-top: 16px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .sparkle {
+      position: fixed;
+      right: -60px;
+      top: -60px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.65;
+      background: radial-gradient(circle at 30% 30%, rgba(213, 157, 167, 0.4), transparent 25%), radial-gradient(circle at 70% 70%, rgba(198, 90, 123, 0.3), transparent 25%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* responsive */
+    @media (max-width:900px) {
+
+      html,
+      body {
+        overflow-y: auto;
+        align-items: flex-start;
+      }
+
+      .container {
+        height: auto;
+        min-height: 100vh;
+        padding: 16px;
+      }
+
+      .card {
+        height: auto;
+        min-height: calc(100vh - 32px);
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        overflow: visible;
+      }
+
+      .hero,
+      .aside {
+        overflow-y: visible;
+      }
+
+      .logo-mark {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header>div:last-child {
+        text-align: left !important;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      p.lead {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width:600px) {
+      .container {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 16px;
+        min-height: calc(100vh - 24px);
+        max-height: none;
+      }
+
+      h1 {
+        font-size: 18px;
+      }
+
+      .feature h3 {
+        font-size: 15px;
+      }
+
+      .feature p {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sparkle" aria-hidden="true"></div>
+  <div class="container">
+    <div class="card">
+      <header>
+        <div class="logo">
+          <div class="logo-mark">
+            <img src="propic.png" alt="Idee Confuse" style="width:100%;height:100%;object-fit:cover;border-radius:12px">
+          </div>
+          <div>
+            <h1>Presenta-Mente <span style="color:var(--accent-2);font-weight:600">— Idee Confuse</span></h1>
+            <p class="lead">Il primo format di Idee Confuse in cui i veri protagonisti siete voi!</p>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="small">Date disponibili:</div>
+          <strong style="font-size:14px">(date disponibili dalla domenica successiva all'annuncio)</strong>
+        </div>
+      </header>
+
+      <div class="grid">
+        <main class="hero">
+          <h2 style="margin-top:6px">Cos'è <em>Presenta-Mente</em>?</h2>
+          <p class="note">Avete mai desiderato parlare di qualcosa che <strong>vi appassiona</strong>, anche se nessuno
+            ve l'ha mai
+            chiesto?
+            Con Presenta-Mente vogliamo dare spazio alla <strong>curiosità</strong>, alla <strong>creatività</strong> e
+            alla voglia di <strong>condividere idee</strong>.
+          </p>
+          Il funzionamento è <strong>semplice</strong>:
+          <div class="feature-list">
+            <div class="feature">
+              <div class="dot">1</div>
+              <div>
+                <h3>Macroargomento</h3>
+                <p>Noi lanciamo un <strong>macroargomento</strong>, un tema ampio che può racchiudere tanti spunti
+                  diversi.
+                  Voi <strong>compilate il form</strong> di partecipazione e iniziate a preparare la vostra
+                  presentazione:
+                  potete scegliere di affrontare un aspetto più <u>specifico</u> del tema, oppure restare su un
+                  argomento più
+                  <u>ampio</u>, purché rientri nel macrotema proposto.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="dot">2</div>
+              <div>
+                <h3>La tua libertà di scelta</h3>
+                <p>La vostra presentazione può essere <strong>ciò che vi rappresenta meglio</strong>: una serie di
+                  <u>slide</u>, un <u>video</u>, un
+                  <u>disegno</u> o <strong>qualsiasi altra forma creativa</strong>!
+                </p>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="dot">3</div>
+              <div>
+                <h3>Partecipare è semplice</h3>
+                <p>La <strong>domenica successiva</strong> all'annuncio vi proporremo alcune <strong>date
+                    disponibili</strong>: ciascuno potrà <u>scegliere
+                    quando</u> presentare il
+                  proprio progetto.
+                </p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="dot">4</div>
+              <div>
+                <h3>Webcam e microfono</h3>
+                <p>Durante la live, <strong>sarete voi</strong> a collegarvi su <strong>Discord</strong> e a raccontare
+                  la vostra idea al pubblico.
+                  <u>Non è obbligatorio</u> usare webcam o microfono, ma se possibile rendono
+                  tutto più <strong>personale e coinvolgente</strong>. Per la prima serata il tema è
+                  <strong>libero</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="note" style="margin-top:16px">🧠 Per la prima serata il tema sarà <strong>libero</strong>: potete
+            davvero parlare
+            di <strong>qualsiasi cosa</strong>.
+            <u>Non serve essere esperti</u>, basta avere un'idea, anche confusa. <strong>Da lì nasce tutto.</strong> 🧠
+          </div>
+        </main>
+
+        <aside class="aside">
+          <h3 style="margin:0 0 8px 0">Partecipa</h3>
+          <form id="applyForm" action="https://formspree.io/f/mldpaeew" method="POST">
+            <label for="twitch">Username di Twitch *</label>
+            <input id="twitch" name="twitch" type="text" placeholder="Il tuo username Twitch" required minlength="4"
+              maxlength="25">
+
+            <label for="title">Titolo (anche provvisorio) *</label>
+            <input id="title" name="title" type="text" placeholder="Es. 'Viaggiare con poco'" required maxlength="63">
+
+            <label style="margin-top:4px">Utilizzerai: *</label>
+            <input type="hidden" name="webcam" value="no">
+            <input type="hidden" name="microfono" value="no">
+            <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+                <input type="checkbox" name="webcam" value="si" style="width:auto;cursor:pointer">
+                <span>Webcam</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+                <input type="checkbox" name="microfono" value="si" style="width:auto;cursor:pointer">
+                <span>Microfono</span>
+              </label>
+            </div>
+
+            <label for="note">Note (facoltativo)</label>
+            <textarea id="note" name="note" placeholder="Eventuali note o informazioni aggiuntive"
+              maxlength="255"></textarea>
+
+            <div style="display:flex;gap:8px;margin-top:6px">
+              <button class="btn" type="submit">Invia candidatura</button>
+            </div>
+
+            <p class="small" style="margin-top:10px">La domenica successiva all'annuncio verranno proposte le date
+              disponibili; potrai scegliere quale giorno preferisci per la presentazione.</p>
+          </form>
+        </aside>
+      </div>
+
+      <footer>
+        <strong>Idee Confuse</strong> — Presenta-Mente — 13/10/2025
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>
